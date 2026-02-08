@@ -13,8 +13,8 @@ pub mod triadgambit_magicblock_validator {
         Ok(())
     }
 
-    pub fn play_game(ctx: Context<Initialize>) -> Result<()> {
-        msg!("Greetings from: {:?}", ctx.program_id);
+    pub fn play_game(ctx: Context<PlayGame>, user_selection: String) -> Result<()> {
+        ctx.accounts.update_user_account(user_selection)?;
         Ok(())
     }
 }
@@ -56,7 +56,7 @@ pub struct PlayGame<'info> {
 }
 
 impl<'info> PlayGame<'info> {
-    fn update_user_account(&mut self, user_turn: String) -> Result<()> {
+    pub fn update_user_account(&mut self, user_turn: String) -> Result<()> {
         let mut rng = rand::rng();
         let mut nums: Vec<i32> = (0..2).collect();
         nums.shuffle(&mut rng);
