@@ -1,5 +1,8 @@
 use crate::states::GameAccountShape;
 use anchor_lang::prelude::*;
+use ephemeral_rollups_sdk::anchor::{commit, delegate, ephemeral};
+use ephemeral_rollups_sdk::cpi::DelegateConfig;
+use ephemeral_rollups_sdk::ephem::{commit_accounts, commit_and_undelegate_accounts};
 
 #[derive(Accounts)]
 pub struct Initialize<'info> {
